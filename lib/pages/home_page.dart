@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/pages/login_page.dart';
+import 'package:flutter_demo/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   String name = "";
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
     );
   }
 }

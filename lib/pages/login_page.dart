@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         return null;
                       },
-                      textInputAction: TextInputAction.done,
+                      textInputAction: TextInputAction.next,
                     ),
                     SizedBox(height: 40),
                     Material(
