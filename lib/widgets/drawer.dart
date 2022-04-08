@@ -20,7 +20,8 @@ class MyDrawer extends StatelessWidget {
                     accountName: Text("Manojit Chakraborty"),
                     accountEmail: Text("jeetmanojit98@gmail.com"),
                     currentAccountPicture: CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/Me.jpeg"),
+                      backgroundImage:
+                          AssetImage("assets/images/login_image.png"),
                     ))),
             ListTile(
               leading: Icon(
