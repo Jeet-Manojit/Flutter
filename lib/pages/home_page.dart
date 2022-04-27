@@ -25,12 +25,14 @@ class _HomePageState extends State<HomePage> {
         await rootBundle.loadString("assets/files/catalog.json");
     final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
+    CatelogModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(20, (index) => CatelogModel.items[0]);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bookstore"),
@@ -38,9 +40,9 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: dummyList.length,
+          itemCount: CatelogModel.items.length,
           itemBuilder: (context, index) {
-            return ItemWidget(item: dummyList[index++]);
+            return ItemWidget(item: CatelogModel.items[index]);
           },
         ),
       ),
