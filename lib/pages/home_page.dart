@@ -39,12 +39,40 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: CatelogModel.items.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(item: CatelogModel.items[index]);
-          },
-        ),
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
+            itemBuilder: (context, index) {
+              final item = CatelogModel.items[index];
+              return Card(
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: GridTile(
+                    header: Container(
+                      child: Text(
+                        item.name,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      padding: const EdgeInsets.all(12),
+                    ),
+                    child: Image.network(item.image),
+                    footer: Container(
+                      child: Text(
+                        item.price.toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                      ),
+                      padding: const EdgeInsets.all(12),
+                    ),
+                  ));
+            },
+            itemCount: CatelogModel.items.length),
       ),
       drawer: MyDrawer(),
     );
