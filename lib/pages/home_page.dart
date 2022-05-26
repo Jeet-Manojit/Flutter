@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:flutter_demo/models/catalog.dart';
-import 'package:flutter_demo/pages/login_page.dart';
 import 'package:flutter_demo/widgets/drawer.dart';
-import 'package:flutter_demo/widgets/item_widget.dart';
+import 'package:flutter_demo/widgets/themes.dart';
+//import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -34,47 +36,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Bookstore"),
+        body: SafeArea(
+      child: Container(
+        padding: EdgeInsets.all(32),
+        child: Column(
+          children: const [
+            Text(
+              "Catalog App",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                letterSpacing: 1,
+                fontSize: 40,
+              ),
+            )
+          ],
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
-            itemBuilder: (context, index) {
-              final item = CatelogModel.items[index];
-              return Card(
-                  clipBehavior: Clip.antiAlias,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: GridTile(
-                    header: Container(
-                      child: Text(
-                        item.name,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.deepPurpleAccent,
-                      ),
-                      padding: const EdgeInsets.all(12),
-                    ),
-                    child: Image.network(item.image),
-                    footer: Container(
-                      child: Text(
-                        item.price.toString(),
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                      ),
-                      padding: const EdgeInsets.all(12),
-                    ),
-                  ));
-            },
-            itemCount: CatelogModel.items.length),
-      ),
-      drawer: MyDrawer(),
-    );
+    ));
   }
 }
